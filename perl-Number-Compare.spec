@@ -4,7 +4,7 @@
 #
 Name     : perl-Number-Compare
 Version  : 0.03
-Release  : 8
+Release  : 9
 URL      : https://cpan.metacpan.org/authors/id/R/RC/RCLAMP/Number-Compare-0.03.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RC/RCLAMP/Number-Compare-0.03.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libn/libnumber-compare-perl/libnumber-compare-perl_0.03-1.debian.tar.gz
