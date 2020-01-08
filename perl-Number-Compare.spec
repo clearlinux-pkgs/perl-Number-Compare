@@ -4,7 +4,7 @@
 #
 Name     : perl-Number-Compare
 Version  : 0.03
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/R/RC/RCLAMP/Number-Compare-0.03.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RC/RCLAMP/Number-Compare-0.03.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libn/libnumber-compare-perl/libnumber-compare-perl_0.03-1.debian.tar.gz
@@ -12,6 +12,7 @@ Summary  : ~
 Group    : Development/Tools
 License  : Artistic-1.0 GPL-1.0
 Requires: perl-Number-Compare-license = %{version}-%{release}
+Requires: perl-Number-Compare-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -21,6 +22,7 @@ No detailed description available
 Summary: dev components for the perl-Number-Compare package.
 Group: Development
 Provides: perl-Number-Compare-devel = %{version}-%{release}
+Requires: perl-Number-Compare = %{version}-%{release}
 
 %description dev
 dev components for the perl-Number-Compare package.
@@ -34,18 +36,28 @@ Group: Default
 license components for the perl-Number-Compare package.
 
 
+%package perl
+Summary: perl components for the perl-Number-Compare package.
+Group: Default
+Requires: perl-Number-Compare = %{version}-%{release}
+
+%description perl
+perl components for the perl-Number-Compare package.
+
+
 %prep
 %setup -q -n Number-Compare-0.03
-cd ..
-%setup -q -T -D -n Number-Compare-0.03 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libnumber-compare-perl_0.03-1.debian.tar.gz
+cd %{_builddir}/Number-Compare-0.03
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Number-Compare-0.03/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/Number-Compare-0.03/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -55,7 +67,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -64,7 +76,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Number-Compare
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Number-Compare/deblicense_copyright
+cp %{_builddir}/Number-Compare-0.03/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Number-Compare/60a054add6d5dbf8dbb44b22628755503b09e08c
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -77,7 +89,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Number/Compare.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -85,4 +96,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Number-Compare/deblicense_copyright
+/usr/share/package-licenses/perl-Number-Compare/60a054add6d5dbf8dbb44b22628755503b09e08c
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Number/Compare.pm
