@@ -4,7 +4,7 @@
 #
 Name     : perl-Number-Compare
 Version  : 0.03
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/R/RC/RCLAMP/Number-Compare-0.03.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RC/RCLAMP/Number-Compare-0.03.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libn/libnumber-compare-perl/libnumber-compare-perl_0.03-1.debian.tar.gz
@@ -76,7 +76,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Number-Compare
-cp %{_builddir}/Number-Compare-0.03/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Number-Compare/60a054add6d5dbf8dbb44b22628755503b09e08c
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-Number-Compare/60a054add6d5dbf8dbb44b22628755503b09e08c
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -100,4 +100,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/Number/Compare.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Number/Compare.pm
