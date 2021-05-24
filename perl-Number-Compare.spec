@@ -4,7 +4,7 @@
 #
 Name     : perl-Number-Compare
 Version  : 0.03
-Release  : 16
+Release  : 17
 URL      : https://cpan.metacpan.org/authors/id/R/RC/RCLAMP/Number-Compare-0.03.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RC/RCLAMP/Number-Compare-0.03.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libn/libnumber-compare-perl/libnumber-compare-perl_0.03-1.debian.tar.gz
@@ -100,4 +100,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.32.1/Number/Compare.pm
+/usr/lib/perl5/vendor_perl/5.34.0/Number/Compare.pm
